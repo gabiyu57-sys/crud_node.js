@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Clínica | Gerenciamento de Leads</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="topo">
+        <div class="logo">
+            <div class="logo-icon">C</div>
+            <div>
+                <h1>Clínica</h1>
+                <p>Gerenciamento de Leads</p>
+            </div>
+        </div>
+
+        <span class="sistema-status">
+            <span class="bolinha"></span>
+            Sistema online
+        </span>
+    </header>
+
+    <main class="container">
+
+        <section class="boas-vindas">
+            <div>
+                <h2>Gerenciamento de Leads</h2>
+                <p>Acompanhe e organize os contatos da sua clínica.</p>
+            </div>
+
+            <button class="botao-principal" onclick="mostrarFormulario()">
+                + Novo Lead
+            </button>
+        </section>
+
+        <section class="indicadores">
+
+            <div class="card-indicador">
+                <div class="indicador-icon azul">♧</div>
+                <div>
+                    <p>Total de Leads</p>
+                    <h3 id="totalLeads">0</h3>
+                </div>
+            </div>
+
+            <div class="card-indicador">
+                <div class="indicador-icon verde">✓</div>
+                <div>
+                    <p>Leads Ativos</p>
+                    <h3 id="totalAtivos">0</h3>
+                </div>
+            </div>
+
+            <div class="card-indicador">
+                <div class="indicador-icon roxo">♡</div>
+                <div>
+                    <p>Compraram Pacote</p>
+                    <h3 id="totalPacotes">0</h3>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="formulario-card" id="formularioCard" hidden>
+
+            <div class="titulo-formulario">
+                <div>
+                    <h2 id="tituloFormulario">Cadastrar novo lead</h2>
+                    <p>Preencha os dados abaixo.</p>
+                </div>
+
+                <button class="fechar" onclick="fecharFormulario()">×</button>
+            </div>
+
+            <form id="formLead">
+
+                <input type="hidden" id="leadId">
+
+                <div class="campos">
+
+                    <div class="campo">
+                        <label for="nome">Nome completo *</label>
+                        <input type="text" id="nome" required placeholder="Digite o nome">
+                    </div>
+
+                    <div class="campo">
+                        <label for="telefone">Telefone *</label>
+                        <input type="text" id="telefone" required placeholder="(11) 99999-9999">
+                    </div>
+
+                    <div class="campo">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" placeholder="exemplo@email.com">
+                    </div>
+
+                    <div class="campo">
+                        <label for="status">Status</label>
+                        <select id="status">
+                            <option value="Lead Novo">Lead Novo</option>
+                            <option value="Em Atendimento">Em Atendimento</option>
+                            <option value="Cliente">Cliente</option>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <label for="ativo">Situação</label>
+                        <select id="ativo">
+                            <option value="1">Ativo</option>
+                            <option value="0">Inativo</option>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <label for="comprou_pacote">Comprou pacote?</label>
+                        <select id="comprou_pacote">
+                            <option value="0">Não</option>
+                            <option value="1">Sim</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="acoes-formulario">
+                    <button type="button" class="botao-cancelar" onclick="fecharFormulario()">
+                        Cancelar
+                    </button>
+
+                    <button type="submit" class="botao-principal">
+                        Salvar Lead
+                    </button>
+                </div>
+
+            </form>
+        </section>
+
+        <!-- TABELA DE LEADS -->
+        <section class="tabela-card">
+
+            <div class="tabela-cabecalho">
+                <div>
+                    <h2>Leads cadastrados</h2>
+                    <p>Visualize e gerencie seus contatos.</p>
+                </div>
+
+                <div class="pesquisa">
+                    <span>⌕</span>
+                    <input
+                        type="text"
+                        id="pesquisa"
+                        placeholder="Pesquisar lead..."
+                    >
+                </div>
+            </div>
+
+            <div class="tabela-responsiva">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Telefone</th>
+                            <th>E-mail</th>
+                            <th>Status</th>
+                            <th>Situação</th>
+                            <th>Pacote</th>
+                            <th>Cadastro</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="listaLeads">
+                        <tr>
+                            <td colspan="8" class="carregando">
+                                Carregando leads...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="mensagemVazia" class="mensagem-vazia" hidden>
+                Nenhum lead encontrado.
+            </div>
+
+        </section>
+
+        <footer>
+            <p>Clínica • Sistema de Gerenciamento de Leads</p>
+        </footer>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
